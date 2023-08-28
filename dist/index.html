@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TicTacToe</title>
+    <link rel="shortcut icon" href="/dist/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/dist/output.css">
+</head>
+<body class="bg-black w-screen h-screen " style="background-image: url(/dist/bbblurry.svg);background-repeat: no-repeat;background-size: cover; background-position: center;">
+    <h1 class="pt-10 text-center pb-4 font-extrabold leading-none tracking-tight text-white text-5xl sm:text-6xl dark:text-white">Play <mark class="px-2 text-white rounded bg-gradient-to-br from-purple-600 to-blue-500">TicTacToe</mark> </h1>
+    <div class="grid shadow-md grid-cols-3 z-0 w-fit mt-20 gap-y-2 gap-x-2 p-2 mx-auto rounded-md bg-slate-400">
+        <div id="1" class="cursor-pointer rounded-md w-20 h-20 sm:w-32 sm:h-32 shadow-md border-slate-400 bg-white text-5xl flex justify-center items-center"></div>
+        <div id="2" class="cursor-pointer rounded-md w-20 h-20 sm:w-32 sm:h-32 shadow-md border-slate-400 bg-white text-5xl flex justify-center items-center"></div>
+        <div id="3" class="cursor-pointer rounded-md w-20 h-20 sm:w-32 sm:h-32 shadow-md border-slate-400 bg-white text-5xl flex justify-center items-center"></div>
+        <div id="4" class="cursor-pointer rounded-md w-20 h-20 sm:w-32 sm:h-32 shadow-md border-slate-400 bg-white text-5xl flex justify-center items-center"></div>
+        <div id="5" class="cursor-pointer rounded-md w-20 h-20 sm:w-32 sm:h-32 shadow-md border-slate-400 bg-white text-5xl flex justify-center items-center"></div>
+        <div id="6" class="cursor-pointer rounded-md w-20 h-20 sm:w-32 sm:h-32 shadow-md border-slate-400 bg-white text-5xl flex justify-center items-center"></div>
+        <div id="7" class="cursor-pointer rounded-md w-20 h-20 sm:w-32 sm:h-32 shadow-md border-slate-400 bg-white text-5xl flex justify-center items-center"></div>
+        <div id="8" class="cursor-pointer rounded-md w-20 h-20 sm:w-32 sm:h-32 shadow-md border-slate-400 bg-white text-5xl flex justify-center items-center"></div>
+        <div id="9" class="cursor-pointer rounded-md w-20 h-20 sm:w-32 sm:h-32 shadow-md border-slate-400 bg-white text-5xl flex justify-center items-center"></div>
+    </div>
+    <div id="modal_container" class=" absolute top-0 left-0 z-10 w-screen h-screen bg-black hidden justify-center items-center opacity-30" >
+    </div>
+    <div id="modal" class="hidden absolute top-0 w-full h-screen">
+        <div class="absolute z-20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white w-fit h-fit flex flex-col p-4  my-auto gap-5 rounded-md shadow-md border-solid border-slate-400 border-1.5 " style="min-width: 300px;">
+            <p id="result" class="text-center text-xl"></p>
+            <div class="flex items-center justify-center">
+                <button onclick="refresh()" class="relative w-fit inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800">
+                    <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                        Play Again
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script>
+        const case1=document.getElementById('1')
+        const case2=document.getElementById('2')
+        const case3=document.getElementById('3')
+        const case4=document.getElementById('4')
+        const case5=document.getElementById('5')
+        const case6=document.getElementById('6')
+        const case7=document.getElementById('7')
+        const case8=document.getElementById('8')
+        const case9=document.getElementById('9')
+        const result=document.getElementById('result')
+        const modal_container=document.getElementById('modal_container')
+        const modal=document.getElementById("modal")
+
+        roles=['X','O']
+        turn=-1
+        function play_role()
+        {   console.log(event.target)
+            if(event.target.innerText=='')
+            {   
+                turn+=1
+                event.target.innerText=roles[turn%2]
+            }
+            if(game_ended()==true)
+            {   
+                if(check_victory()==true)
+                {   
+                    winner=turn%2 +1
+                    result.innerHTML="The winner is player number "+winner
+                }
+                else
+                {
+                    result.innerHTML="It's a draw!"
+                }
+                modal_container.classList.remove("hidden")
+                modal_container.classList.add("flex")
+                modal.classList.remove("hidden")
+
+
+            }
+            
+        }
+        function game_ended()
+        {
+            return(check_victory() || (turn==8))
+        }
+        function check_victory()
+        {
+            usecase1=(case1.innerText==case2.innerText)&&(case2.innerText==case3.innerText)&&(case1.innerText!='')
+            usecase2=(case4.innerText==case5.innerText)&&(case5.innerText==case6.innerText)&&(case4.innerText!='')
+            usecase3=(case7.innerText==case8.innerText)&&(case8.innerText==case9.innerText)&&(case7.innerText!='')
+            usecase4=(case1.innerText==case4.innerText)&&(case4.innerText==case7.innerText)&&(case1.innerText!='')
+            usecase5=(case2.innerText==case5.innerText)&&(case5.innerText==case8.innerText)&&(case2.innerText!='')
+            usecase6=(case3.innerText==case6.innerText)&&(case6.innerText==case9.innerText)&&(case3.innerText!='')
+            usecase7=(case1.innerText==case5.innerText)&&(case5.innerText==case9.innerText)&&(case1.innerText!='')
+            usecase8=(case3.innerText==case5.innerText)&&(case5.innerText==case7.innerText)&&(case3.innerText!='')
+
+            return(usecase1 || usecase2 || usecase3 || usecase4 || usecase5 || usecase6 || usecase7 || usecase8)
+        }
+
+        function close_modal()
+        {
+            modal_container.classList.add("hidden")
+            modal_container.classList.remove("flex")
+            modal.classList.add("hidden")
+            refresh()
+        }
+
+        function refresh()
+        {
+            window.location.reload("Refresh")
+        }
+
+        case1.addEventListener("click",play_role)
+        case2.addEventListener("click",play_role)
+        case3.addEventListener("click",play_role)
+        case4.addEventListener("click",play_role)
+        case5.addEventListener("click",play_role)
+        case6.addEventListener("click",play_role)
+        case7.addEventListener("click",play_role)
+        case8.addEventListener("click",play_role)
+        case9.addEventListener("click",play_role)
+        modal_container.addEventListener("click",close_modal)
+    </script>
+</body>
+</html>
