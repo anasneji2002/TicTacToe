@@ -6,19 +6,39 @@
     <title>TicTacToe</title>
     <link rel="shortcut icon" href="/dist/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="/dist/output.css">
+    <style>
+        .bg_image
+        {
+            background-image: url(/dist/bbblurry.svg);background-repeat: no-repeat;background-size: cover; background-position: center;
+            background-color: black;
+        }
+        body
+        {
+            transition-duration: 0.3s;
+            transition-timing-function: ease-in-out;
+        }
+
+    </style>
 </head>
-<body class="bg-black w-screen h-screen " style="background-image: url(/dist/bbblurry.svg);background-repeat: no-repeat;background-size: cover; background-position: center;">
-    <h1 class="pt-10 text-center pb-4 font-extrabold leading-none tracking-tight text-white text-5xl sm:text-6xl dark:text-white">Play <mark class="px-2 text-white rounded bg-gradient-to-br from-purple-600 to-blue-500">TicTacToe</mark> </h1>
-    <div class="grid shadow-md grid-cols-3 z-0 w-fit mt-20 gap-y-2 gap-x-2 p-2 mx-auto rounded-md bg-slate-400">
-        <div id="1" class="cursor-pointer rounded-md w-20 h-20 sm:w-32 sm:h-32 shadow-md border-slate-400 bg-white text-5xl flex justify-center items-center"></div>
-        <div id="2" class="cursor-pointer rounded-md w-20 h-20 sm:w-32 sm:h-32 shadow-md border-slate-400 bg-white text-5xl flex justify-center items-center"></div>
-        <div id="3" class="cursor-pointer rounded-md w-20 h-20 sm:w-32 sm:h-32 shadow-md border-slate-400 bg-white text-5xl flex justify-center items-center"></div>
-        <div id="4" class="cursor-pointer rounded-md w-20 h-20 sm:w-32 sm:h-32 shadow-md border-slate-400 bg-white text-5xl flex justify-center items-center"></div>
-        <div id="5" class="cursor-pointer rounded-md w-20 h-20 sm:w-32 sm:h-32 shadow-md border-slate-400 bg-white text-5xl flex justify-center items-center"></div>
-        <div id="6" class="cursor-pointer rounded-md w-20 h-20 sm:w-32 sm:h-32 shadow-md border-slate-400 bg-white text-5xl flex justify-center items-center"></div>
-        <div id="7" class="cursor-pointer rounded-md w-20 h-20 sm:w-32 sm:h-32 shadow-md border-slate-400 bg-white text-5xl flex justify-center items-center"></div>
-        <div id="8" class="cursor-pointer rounded-md w-20 h-20 sm:w-32 sm:h-32 shadow-md border-slate-400 bg-white text-5xl flex justify-center items-center"></div>
-        <div id="9" class="cursor-pointer rounded-md w-20 h-20 sm:w-32 sm:h-32 shadow-md border-slate-400 bg-white text-5xl flex justify-center items-center"></div>
+<body id="Background" class="w-screen h-screen bg_image overflow-x-hidden">
+    <div class=" pt-10 flex flex-row justify-center items-center w-screen">
+        <div id="refresh_button" class="absolute left-0 top-0 ml-3 mt-3 cursor-pointer w-14 h-14 justify-center items-center hidden sm:flex ">
+            <svg id="refresh_icon" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" class="w-14 h-14 bg-gradient-to-br from-purple-600 to-blue-500 rounded-md p-2 border-2 border-white fill-slate-300 duration-300   hover:fill-white hover:border-whie"  viewBox="0 0 50 50">
+                <path  d="M 20 4 C 15.054688 4 11 8.054688 11 13 L 11 35.5625 L 5.71875 30.28125 L 4.28125 31.71875 L 11.28125 38.71875 L 12 39.40625 L 12.71875 38.71875 L 19.71875 31.71875 L 18.28125 30.28125 L 13 35.5625 L 13 13 C 13 9.144531 16.144531 6 20 6 L 31 6 L 31 4 Z M 38 10.59375 L 37.28125 11.28125 L 30.28125 18.28125 L 31.71875 19.71875 L 37 14.4375 L 37 37 C 37 40.855469 33.855469 44 30 44 L 19 44 L 19 46 L 30 46 C 34.945313 46 39 41.945313 39 37 L 39 14.4375 L 44.28125 19.71875 L 45.71875 18.28125 L 38.71875 11.28125 Z"></path>
+            </svg>
+        </div>
+        <h1 id="Title" class=" text-center pb-4 font-extrabold leading-none tracking-tight text-white text-5xl sm:text-6xl dark:text-white">Play <mark id="Title_Mark" class="px-2 text-white rounded bg-gradient-to-br from-purple-600 to-blue-500">TicTacToe</mark> </h1>
+    </div>
+    <div class="grid shadow-md grid-cols-3 z-0 w-fit mt-20 gap-y-2 gap-x-2 p-2  mx-auto rounded-md bg-slate-400">
+        <div id="1" class="cursor-pointer rounded-md w-20 h-20 sm:w-32 sm:h-32 shadow-md border-slate-400 bg-white text-5xl  flex justify-center items-center"></div>
+        <div id="2" class="cursor-pointer rounded-md w-20 h-20 sm:w-32 sm:h-32 shadow-md border-slate-400 bg-white text-5xl  flex justify-center items-center"></div>
+        <div id="3" class="cursor-pointer rounded-md w-20 h-20 sm:w-32 sm:h-32 shadow-md border-slate-400 bg-white text-5xl  flex justify-center items-center"></div>
+        <div id="4" class="cursor-pointer rounded-md w-20 h-20 sm:w-32 sm:h-32 shadow-md border-slate-400 bg-white text-5xl  flex justify-center items-center"></div>
+        <div id="5" class="cursor-pointer rounded-md w-20 h-20 sm:w-32 sm:h-32 shadow-md border-slate-400 bg-white text-5xl  flex justify-center items-center"></div>
+        <div id="6" class="cursor-pointer rounded-md w-20 h-20 sm:w-32 sm:h-32 shadow-md border-slate-400 bg-white text-5xl  flex justify-center items-center"></div>
+        <div id="7" class="cursor-pointer rounded-md w-20 h-20 sm:w-32 sm:h-32 shadow-md border-slate-400 bg-white text-5xl  flex justify-center items-center"></div>
+        <div id="8" class="cursor-pointer rounded-md w-20 h-20 sm:w-32 sm:h-32 shadow-md border-slate-400 bg-white text-5xl  flex justify-center items-center"></div>
+        <div id="9" class="cursor-pointer rounded-md w-20 h-20 sm:w-32 sm:h-32 shadow-md border-slate-400 bg-white text-5xl  flex justify-center items-center"></div>
     </div>
     <div id="modal_container" class=" absolute top-0 left-0 z-10 w-screen h-screen bg-black hidden justify-center items-center opacity-30" >
     </div>
@@ -47,6 +67,7 @@
         const result=document.getElementById('result')
         const modal_container=document.getElementById('modal_container')
         const modal=document.getElementById("modal")
+       
 
         roles=['X','O']
         turn=-1
@@ -71,10 +92,7 @@
                 modal_container.classList.remove("hidden")
                 modal_container.classList.add("flex")
                 modal.classList.remove("hidden")
-
-
             }
-            
         }
         function game_ended()
         {
@@ -90,10 +108,8 @@
             usecase6=(case3.innerText==case6.innerText)&&(case6.innerText==case9.innerText)&&(case3.innerText!='')
             usecase7=(case1.innerText==case5.innerText)&&(case5.innerText==case9.innerText)&&(case1.innerText!='')
             usecase8=(case3.innerText==case5.innerText)&&(case5.innerText==case7.innerText)&&(case3.innerText!='')
-
             return(usecase1 || usecase2 || usecase3 || usecase4 || usecase5 || usecase6 || usecase7 || usecase8)
         }
-
         function close_modal()
         {
             modal_container.classList.add("hidden")
@@ -101,12 +117,11 @@
             modal.classList.add("hidden")
             refresh()
         }
-
         function refresh()
         {
             window.location.reload("Refresh")
-        }
-
+        }   
+        
         case1.addEventListener("click",play_role)
         case2.addEventListener("click",play_role)
         case3.addEventListener("click",play_role)
@@ -117,6 +132,7 @@
         case8.addEventListener("click",play_role)
         case9.addEventListener("click",play_role)
         modal_container.addEventListener("click",close_modal)
+        refresh_button.addEventListener("click",refresh)
     </script>
 </body>
 </html>
